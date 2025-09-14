@@ -1,0 +1,25 @@
+﻿@using Kubrik.Web.Layout
+@using Kubrik.Web.Components
+
+@using Microsoft.AspNetCore.Components.Authorization
+
+<CascadingAuthenticationState>
+    <Router AppAssembly="@typeof(App).Assembly">
+        <Found Context="data">
+            <AuthorizeRouteView RouteData="@data" DefaultLayout="@typeof(MainLayout)">
+                <Authorizing />
+            
+                <NotAuthorized>
+                    <Redirect Url="/login" />
+                </NotAuthorized>
+            </AuthorizeRouteView>
+        </Found>
+    
+        <NotFound>
+            <PageTitle>Not found</PageTitle>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p role="alert">Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </NotFound>
+    </Router>
+</CascadingAuthenticationState>

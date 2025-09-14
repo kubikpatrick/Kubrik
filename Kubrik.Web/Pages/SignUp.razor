@@ -1,0 +1,40 @@
+@page "/sign-up"
+
+@using Kubrik.Web.Layout
+
+@layout AuthenticationLayout
+
+<div class="d-flex align-items-center justify-content-center vh-100 bg-light">
+    <EditForm Model="request" OnValidSubmit="Submit">
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+
+        <div class="row w-75">
+            <div class="col-12 mb-2">
+                
+            </div>
+            
+            <div class="col-12 mb-2">
+                <InputText @bind-Value="request.Email" class="form-control" placeholder="Email" type="email"/>
+                <ValidationMessage For="() => request.Email"></ValidationMessage>
+            </div>
+
+            <div class="col-12 mb-3">
+                <InputText @bind-Value="request.Password" class="form-control" placeholder="Password" type="password"/>
+                <ValidationMessage For="() => request.Password"></ValidationMessage>
+            </div>
+
+            <div class="col-12 mb-3">
+                <InputText @bind-Value="request.ConfirmPassword" class="form-control" placeholder="Confirm password" type="password"/>
+                <ValidationMessage For="() => request.ConfirmPassword"></ValidationMessage>
+            </div>
+
+            <div class="d-flex justify-content-between mb-3">
+                <a href="/login" class="text-decoration-none small">Already have an account ?</a>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-outline-success btn">Sign up</button>
+            </div>
+        </div>
+    </EditForm>
+</div>

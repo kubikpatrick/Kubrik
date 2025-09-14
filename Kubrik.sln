@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kubrik.Api", "Kubrik.Api\Kubrik.Api.csproj", "{5FC58E27-6710-442E-866F-1B7DE6901F16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kubrik", "Kubrik\Kubrik.csproj", "{2AC16EF4-817C-4BCA-89B9-452C74577F9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kubrik.Web", "Kubrik.Web\Kubrik.Web.csproj", "{666D38DB-5846-49B9-913B-6E141D743A2B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "clients", "clients", "{525BBEF9-DC9D-42BA-8D1C-C7A29EBFB3E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kubrik.Daemon", "Kubrik.Daemon\Kubrik.Daemon.csproj", "{64325975-D860-4938-915C-6A91F1B6EE2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FC58E27-6710-442E-866F-1B7DE6901F16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FC58E27-6710-442E-866F-1B7DE6901F16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FC58E27-6710-442E-866F-1B7DE6901F16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FC58E27-6710-442E-866F-1B7DE6901F16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AC16EF4-817C-4BCA-89B9-452C74577F9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AC16EF4-817C-4BCA-89B9-452C74577F9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AC16EF4-817C-4BCA-89B9-452C74577F9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AC16EF4-817C-4BCA-89B9-452C74577F9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{666D38DB-5846-49B9-913B-6E141D743A2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{666D38DB-5846-49B9-913B-6E141D743A2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{666D38DB-5846-49B9-913B-6E141D743A2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{666D38DB-5846-49B9-913B-6E141D743A2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64325975-D860-4938-915C-6A91F1B6EE2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64325975-D860-4938-915C-6A91F1B6EE2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64325975-D860-4938-915C-6A91F1B6EE2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64325975-D860-4938-915C-6A91F1B6EE2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{666D38DB-5846-49B9-913B-6E141D743A2B} = {525BBEF9-DC9D-42BA-8D1C-C7A29EBFB3E3}
+	EndGlobalSection
+EndGlobal

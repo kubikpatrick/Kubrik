@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>dotnet-Kubrik.Daemon-1f5b7abd-f8ef-4849-ad25-1b9efa3c28aa</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="9.0.9" />
+        <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.8" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Kubrik\Kubrik.csproj" />
+    </ItemGroup>
+</Project>

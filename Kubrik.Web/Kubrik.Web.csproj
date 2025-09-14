@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Blazor.Geolocation.WebAssembly" Version="9.0.1" />
+        <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+        <PackageReference Include="Community.Blazor.MapLibre" Version="1.2.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.1"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="9.0.9" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.1" PrivateAssets="all"/>
+        <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.9" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Layout\MainLayout.razor" />
+      <_ContentIncludedByDefault Remove="Layout\NavMenu.razor" />
+      <_ContentIncludedByDefault Remove="Pages\Counter.razor" />
+      <_ContentIncludedByDefault Remove="Pages\Home.razor" />
+      <_ContentIncludedByDefault Remove="Pages\Weather.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Components\GridCard.razor" />
+      <AdditionalFiles Include="Components\Redirect.razor" />
+      <AdditionalFiles Include="Layout\AuthenticationLayout.razor" />
+      <AdditionalFiles Include="Layout\Sidebar.razor" />
+      <AdditionalFiles Include="Pages\Home.razor" />
+      <AdditionalFiles Include="Pages\Login.razor" />
+      <AdditionalFiles Include="Pages\SignUp.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Kubrik\Kubrik.csproj" />
+    </ItemGroup>
+
+</Project>

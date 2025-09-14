@@ -1,0 +1,9 @@
+﻿@using Kubrik.Models.Devices
+@using Kubrik.Web.Components
+
+<div class="d-flex flex-column gap-3 p-3 bg-light vh-100">
+    @foreach (var device in Devices)
+    {
+        <GridCard Name="@device.Name" Image="@(device.Type == DeviceType.Computer ? "computer.svg" : "smartphone.svg")"/>
+    }
+</div>

@@ -1,0 +1,15 @@
+@page "/"
+
+@using Kubrik.Web.Layout
+
+@using Community.Blazor.MapLibre
+
+<div class="row g-0">
+    <div class="col-md-2">
+        <Sidebar Circles="Circles" Devices="Devices" />
+    </div>
+    
+    <div class="col-md-10">
+        <MapLibre OnLoad="@OnLoad" Class="w-100 vh-100" Options="_options" @ref="_map"/>
+    </div>
+</div>

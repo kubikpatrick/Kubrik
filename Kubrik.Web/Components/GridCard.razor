@@ -1,0 +1,19 @@
+<div class="d-flex align-items-center p-2 bg-white rounded-3 shadow-sm" style="border: 1px solid #dee2e6;">
+    <div class="bg-white rounded-circle d-flex justify-content-center align-items-center me-3" style="width: 50px; height: 50px; border: 2px solid #dee2e6;">
+        <img src="/images/@Image" class="rounded-circle" style="width: 32px; height: 32px;" alt=""/>
+    </div>
+    
+    <div>
+        <h6 class="mb-0">@Name</h6>
+    </div>
+</div>
+
+
+@code 
+{
+    [Parameter]
+    public string Name { get; set; }
+    
+    [Parameter]
+    public string Image { get; set; }
+}
