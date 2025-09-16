@@ -82,14 +82,12 @@ public partial class Home : ComponentBase
                 OpacityWhenCovered = "0",
                 Extensions = new MarkerOptionsExtensions
                 {
-                    HtmlContent = $"""
-                                   <div class="d-flex justify-content-center align-items-center rounded-circle bg-white shadow" style="width: 50px; height: 50px; border: 2px solid #dee2e6;">
-                                                      <img src="/images/{(device.Type is DeviceType.Computer ? "computer.svg" : "smartphone.svg")}" 
-                                                           class="rounded-circle" 
-                                                           style="width: 32px; height: 32px;">
-                                                    </div>
-                                   """
-
+                    HtmlContent = 
+                    $"""
+                        <div class="d-flex justify-content-center align-items-center rounded-circle bg-white shadow" style="width: 50px; height: 50px; border: 2px solid #dee2e6;">
+                            <img src="/images/{(device.Type is DeviceType.Computer ? "computer.png" : "smartphone.png")}" class="rounded-circle" style="width: 32px; height: 32px;">
+                        </div>
+                    """
                 }
             });
         }
