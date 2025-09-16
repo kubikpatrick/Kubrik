@@ -15,7 +15,7 @@ public sealed class DevicesController : AuthorizedControllerBase
 {
     private readonly DeviceManager _deviceManager;
     
-    public DevicesController( DeviceManager deviceManager)
+    public DevicesController(DeviceManager deviceManager)
     {
         _deviceManager = deviceManager;
     }
