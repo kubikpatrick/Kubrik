@@ -40,6 +40,8 @@ public sealed class LocationWorker : BackgroundService
         _geolocator = new Geolocator
         {
             DesiredAccuracy = PositionAccuracy.High,
+            MovementThreshold = 10,
+            ReportInterval = 3000
         };
 
         _geolocator.PositionChanged += LocationChanged;
