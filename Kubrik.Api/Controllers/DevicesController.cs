@@ -40,14 +40,9 @@ public sealed class DevicesController : AuthorizedControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Device>> Create([FromQuery] string name, [FromQuery] DeviceType type)
+    public async Task<ActionResult<Device>> Create([Bind(nameof(Device.Name), nameof(Device.Type)), FromBody] Device device)
     {
-        var device = new Device
-        {
-            Name = name,
-            Type = type,
-            UserId = CurrentUserId
-        };
+        device.UserId = CurrentUserId;
         
         var result = await _deviceManager.CreateAsync(device);
         if (!result.Succeeded)
