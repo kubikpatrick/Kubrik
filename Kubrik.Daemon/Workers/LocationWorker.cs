@@ -86,7 +86,7 @@ public sealed class LocationWorker : BackgroundService
             }
             else
             {
-                _logger.LogInformation("Location updated successfully at {time}", DateTime.UtcNow.TimeOfDay);
+                _logger.LogInformation("Location updated successfully at {time}", DateTime.UtcNow.ToShortTimeString());
             }
         }
         catch (Exception ex)
