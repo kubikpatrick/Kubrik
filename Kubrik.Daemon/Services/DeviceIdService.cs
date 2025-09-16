@@ -30,7 +30,7 @@ public sealed class DeviceIdService
 
     private async Task<string> CreateAsync(string machineName, DeviceType type)
     {
-        var response = await _http.PostAsJsonAsync($"/devices?name={machineName}&type={type}", string.Empty);
+        var response = await _http.PostAsJsonAsync($"/devices?machineName={machineName}&type={type}", string.Empty);
         if (!response.IsSuccessStatusCode)
         {
             throw new Exception("Error creating device.");
