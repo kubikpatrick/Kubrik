@@ -84,7 +84,7 @@ public partial class Home : ComponentBase
                 {
                     HtmlContent = 
                     $"""
-                        <div class="d-flex justify-content-center align-items-center rounded-circle bg-white shadow" style="width: 50px; height: 50px; border: 2px solid #dee2e6;">
+                        <div class="d-flex justify-content-center align-items-center rounded-circle border border-2 border-light-subtle bg-white" style="width: 50px; height: 50px;">
                             <img src="/images/{(device.Type is DeviceType.Computer ? "computer.png" : "smartphone.png")}" class="rounded-circle" style="width: 32px; height: 32px;">
                         </div>
                     """
