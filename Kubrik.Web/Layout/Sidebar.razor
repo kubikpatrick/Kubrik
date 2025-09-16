@@ -2,8 +2,13 @@
 @using Kubrik.Web.Components
 
 <div class="d-flex flex-column gap-3 p-3 bg-light vh-100">
+    <div class="btn-group btn-group-sm" role="group" aria-label="Buttons">
+        <button type="button" class="btn btn-primary border-0">People</button>
+        <button type="button" class="btn btn-primary border-0">Devices</button>
+    </div>
+    
     @foreach (var device in Devices)
     {
-        <GridCard Name="@device.Name" Image="@(device.Type == DeviceType.Computer ? "computer.svg" : "smartphone.svg")"/>
+        <GridCard Name="@device.Name" Image="@(device.Type == DeviceType.Computer ? "computer.png" : "smartphone.png")"/>
     }
 </div>
