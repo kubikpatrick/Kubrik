@@ -1,3 +1,4 @@
+using Kubrik.Api.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +15,7 @@ public sealed class DevicesController : AuthorizedControllerBase
 {
     private readonly DeviceManager _deviceManager;
     
-    public DevicesController(DeviceManager deviceManager)
+    public DevicesController( DeviceManager deviceManager)
     {
         _deviceManager = deviceManager;
     }
@@ -40,10 +41,15 @@ public sealed class DevicesController : AuthorizedControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Device>> Create([Bind(nameof(Device.Name), nameof(Device.Type)), FromBody] Device device)
+    public async Task<ActionResult<Device>> Create([FromQuery] string machineName, [FromQuery] DeviceType type)
     {
-        device.UserId = CurrentUserId;
-        
+        var device = new Device
+        {
+            Name = machineName,
+            Type = type,
+            UserId = CurrentUserId
+        };
+
         var result = await _deviceManager.CreateAsync(device);
         if (!result.Succeeded)
         {
