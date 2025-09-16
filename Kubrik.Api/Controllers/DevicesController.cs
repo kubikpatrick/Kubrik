@@ -58,6 +58,20 @@ public sealed class DevicesController : AuthorizedControllerBase
         return Ok(device);
     }
 
+    [HttpDelete("{id:guid}")]
+    public async Task<ActionResult<Device>> Delete([FromRoute] string id)
+    {
+        var device = await _deviceManager.FindByIdAsync(id);
+        if (device is null || device.UserId != CurrentUserId)
+        {
+            return NotFound();
+        }
+
+        await _deviceManager.DeleteAsync(device);
+
+        return Ok();
+    }
+
     [HttpPatch("{id:guid}/location")]
     public async Task<ActionResult> Location([FromRoute] string id, [FromBody] Location location)
     {
