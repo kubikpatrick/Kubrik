@@ -60,7 +60,7 @@ public sealed class CirclesController : AuthorizedControllerBase
     }
     
     [HttpPost("{id:guid}/members")]
-    public async Task<ActionResult> AddMember([FromRoute] string id, [FromBody] Member member)
+    public async Task<ActionResult> Add([FromRoute] string id, [FromBody] Member member)
     {
         var circle = await _context.Circles.Include(c => c.Members).FirstOrDefaultAsync(c => c.Id == id && c.UserId == CurrentUserId);
         if (circle is null)
