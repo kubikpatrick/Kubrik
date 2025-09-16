@@ -1,4 +1,3 @@
-using System.Text.Json;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
@@ -52,6 +51,7 @@ public sealed class DeviceManager : ManagerBase<Device>
     public async Task DeleteAsync(Device device)
     {
         Context.Devices.Remove(device);
+        Cache.Remove(device.Id);
         
         await Context.SaveChangesAsync();
     }
