@@ -51,9 +51,10 @@ public sealed class DeviceManager : ManagerBase<Device>, IManager<Device>
     public async Task DeleteAsync(Device device)
     {
         Context.Devices.Remove(device);
-        Cache.Remove(device.Id);
         
         await Context.SaveChangesAsync();
+        
+        Cache.Remove(device.Id);
     }
     
     public async Task UpdateLocationAsync(Device device, Location location)
