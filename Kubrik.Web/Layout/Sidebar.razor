@@ -1,14 +1,19 @@
 ﻿@using Kubrik.Models.Devices
 @using Kubrik.Web.Components
 
-<div class="d-flex flex-column gap-3 p-3 bg-light vh-100">
-    <div class="btn-group btn-group-sm" role="group" aria-label="Buttons">
-        <button type="button" class="btn btn-primary border-0">People</button>
-        <button type="button" class="btn btn-primary border-0">Devices</button>
+<div class="bg-light">
+    <div class="w-100 btn-group btn-group-sm mx-auto p-2" role="group" aria-label="Localizable selection">
+        <button type="button" class="btn btn-primary border-0 w-100">Devices</button>
+        <button type="button" class="btn btn-primary border-0 w-100">People</button>
+        <button type="button" class="btn btn-primary border-0 w-100">All</button>
     </div>
-    
-    @foreach (var device in Devices)
-    {
-        <GridCard Name="@device.Name" Image="@(device.Type == DeviceType.Computer ? "computer.png" : "smartphone.png")"/>
-    }
+
+    <div class="row">
+        <div class="d-none d-md-block col-md-12">
+            @foreach (var device in Devices)
+            {
+                <GridCard Name="@device.Name" Image="@(device.Type == DeviceType.Computer ? "computer.png" : "smartphone.png")"/>
+            }
+        </div>
+    </div>
 </div>
