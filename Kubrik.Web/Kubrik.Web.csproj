@@ -16,25 +16,7 @@
         <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.9" />
         <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
     </ItemGroup>
-
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="Layout\MainLayout.razor" />
-      <_ContentIncludedByDefault Remove="Layout\NavMenu.razor" />
-      <_ContentIncludedByDefault Remove="Pages\Counter.razor" />
-      <_ContentIncludedByDefault Remove="Pages\Home.razor" />
-      <_ContentIncludedByDefault Remove="Pages\Weather.razor" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <AdditionalFiles Include="Components\GridCard.razor" />
-      <AdditionalFiles Include="Components\Redirect.razor" />
-      <AdditionalFiles Include="Layout\AuthenticationLayout.razor" />
-      <AdditionalFiles Include="Layout\Sidebar.razor" />
-      <AdditionalFiles Include="Pages\Home.razor" />
-      <AdditionalFiles Include="Pages\Login.razor" />
-      <AdditionalFiles Include="Pages\SignUp.razor" />
-    </ItemGroup>
-
+    
     <ItemGroup>
       <ProjectReference Include="..\Kubrik\Kubrik.csproj" />
     </ItemGroup>
