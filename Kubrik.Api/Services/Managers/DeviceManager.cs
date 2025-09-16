@@ -10,7 +10,7 @@ using Kubrik.Models.Results;
 
 namespace Kubrik.Api.Services.Managers;
 
-public sealed class DeviceManager : ManagerBase<Device>
+public sealed class DeviceManager : ManagerBase<Device>, IManager<Device>
 {
     private readonly IHubContext<LocationHub> _hub;
     
@@ -33,7 +33,7 @@ public sealed class DeviceManager : ManagerBase<Device>
 
     public async Task<DataResult> CreateAsync(Device device)
     {
-        bool principal = await Context.Devices.AnyAsync(d => !d.IsPrincipal);
+        bool principal = await Context.Devices.AllAsync(d => !d.IsPrincipal);
 
         device.IsPrincipal = principal;
         
