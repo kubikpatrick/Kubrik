@@ -43,30 +43,4 @@ public sealed class JwtService
 
         return _handler.WriteToken(token);
     }
-
-    public RefreshToken GenerateRefreshToken(User user)
-    {
-        string id = Guid.NewGuid().ToString();
-        string hash = HashToken(id);
-        
-        var token = new RefreshToken
-        {
-            Id = id,
-            Value = hash,
-            ExpiresAt = DateTime.UtcNow.AddDays(30),
-            UserId = user.Id
-        };
-
-        return token;
-    }
-
-    private Claim[] ExtractClaims(string token)
-    {
-        return _handler.ReadJwtToken(token).Claims.ToArray();
-    }
-
-    public string HashToken(string id)
-    {
-        return Convert.ToBase64String(SHA256.HashData(Encoding.UTF8.GetBytes(id)));
-    }
 }
