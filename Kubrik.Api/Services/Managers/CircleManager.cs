@@ -6,7 +6,7 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace Kubrik.Api.Services.Managers;
 
-public sealed class CircleManager : ManagerBase<Circle>, IManagerBase<Circle>
+public sealed class CircleManager : ManagerBase<Circle>, IManager<Circle>
 {
     public CircleManager(ApplicationDbContext context, IMemoryCache cache) : base(context, cache)
     {

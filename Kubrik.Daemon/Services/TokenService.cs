@@ -7,13 +7,14 @@ namespace Kubrik.Daemon.Services;
 
 public sealed class TokenService : ITokenService
 {
-    private readonly IConfiguration _configuration;
     private readonly HttpClient _http;
+ 
+    private readonly IConfiguration _configuration;
     
-    public TokenService(IConfiguration configuraton, HttpClient http)
+    public TokenService(HttpClient http, IConfiguration configuration)
     {
-        _configuration = configuraton;
         _http = http;
+        _configuration = configuration;
     }
     
     public async Task<string?> GetTokenAsync()
