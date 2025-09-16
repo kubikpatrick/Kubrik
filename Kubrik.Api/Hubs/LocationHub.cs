@@ -3,8 +3,6 @@ using Kubrik.Models;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace Kubrik.Api.Hubs;
 
@@ -13,13 +11,11 @@ public sealed class LocationHub : Hub
 {
     private readonly ApplicationDbContext _context;
     
-    private readonly IMemoryCache _cache;
     private readonly ILogger<LocationHub> _logger;
     
-    public LocationHub(ApplicationDbContext context, IMemoryCache cache, ILogger<LocationHub> logger)
+    public LocationHub(ApplicationDbContext context, ILogger<LocationHub> logger)
     {
         _context = context;
-        _cache = cache;
         _logger = logger;
     }
     
