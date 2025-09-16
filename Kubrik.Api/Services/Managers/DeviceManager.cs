@@ -48,6 +48,13 @@ public sealed class DeviceManager : ManagerBase<Device>
         
         return DataResult.Success();
     }
+
+    public async Task DeleteAsync(Device device)
+    {
+        Context.Devices.Remove(device);
+        
+        await Context.SaveChangesAsync();
+    }
     
     public async Task UpdateLocationAsync(Device device, Location location)
     {
