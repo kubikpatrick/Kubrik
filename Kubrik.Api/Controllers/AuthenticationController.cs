@@ -1,4 +1,3 @@
-using Kubrik.Api.Extensions;
 using Kubrik.Api.Services;
 using Kubrik.Models.Http;
 using Kubrik.Models.Identity;
