@@ -1,7 +1,5 @@
 using System.Net.Http.Headers;
-using System.Net.Http.Json;
 
-using Kubrik.Models.Http;
 using Kubrik.Services.Contracts;
 
 namespace Kubrik.Daemon.Workers;
@@ -23,7 +21,7 @@ public sealed class JwtRefreshWorker : BackgroundService
     public override async Task StartAsync(CancellationToken cancellationToken)
     {
         await _lock.WaitAsync(cancellationToken);
-
+        
         await RefreshTokenAsync(cancellationToken);
         
         _lock.Release();
