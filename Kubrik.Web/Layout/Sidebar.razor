@@ -1,19 +1,58 @@
-﻿@using Kubrik.Models.Devices
-@using Kubrik.Web.Components
+﻿@using Kubrik.Models.Circles
+@using Kubrik.Models.Devices
+@using Kubrik.Web.Components.Cards
 
 <div class="bg-light vh-100">
-    <div class="w-100 btn-group btn-group-sm mx-auto p-2" role="group" aria-label="Localizable selection">
-        <button type="button" class="btn btn-primary border-0 w-100">Devices</button>
-        <button type="button" class="btn btn-primary border-0 w-100">People</button>
-        <button type="button" class="btn btn-primary border-0 w-100">All</button>
-    </div>
-
-    <div class="row">
-        <div class="d-none d-md-block col-md-12">
-            @foreach (var device in Devices)
-            {
-                <GridCard Name="@device.Name" Image="@(device.Type == DeviceType.Computer ? "computer.png" : "smartphone.png")"/>
-            }
+    <div class="mx-auto px-2 py-2">
+        <div class="w-100 btn-group btn-group-sm mb-2" role="group" aria-label="Localizable selection">
+            <button type="button" class="btn btn-primary border-0 w-100 rounded-start-3" @onclick="() => SelectTab(nameof(Devices))">Devices</button>
+            <button type="button" class="btn btn-primary border-0 w-100" @onclick="() => SelectTab(nameof(Circles))">People</button>
+            <button type="button" class="btn btn-primary border-0 w-100 rounded-end-3">All</button>
         </div>
     </div>
+
+    <div class="row gy-2">
+        @switch (CurrentTab)
+        {
+            case nameof(Circles):
+            {
+                foreach (var circle in Circles.Where(c => c.Name.Contains(SearchTerm, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    
+                }
+                
+                break;   
+            }
+                
+            case nameof(Devices):
+            {
+                foreach (var device in Devices.Where(d => d.Name.Contains(SearchTerm, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    <div class="d-none d-md-block col-md-12">
+                        <DeviceCard Device="device" />
+                    </div>
+                }
+
+                break;
+            }
+        }
+    </div>
 </div>
+
+
+@code 
+{
+    [Parameter]
+    public List<Circle> Circles { get; set; }
+    
+    [Parameter]
+    public List<Device> Devices { get; set; }
+
+    private string SearchTerm { get; set; } = string.Empty;
+    private string CurrentTab { get; set; } = nameof(Devices);
+
+    private void SelectTab(string tabName)
+    {
+        CurrentTab = tabName;
+    }
+}
