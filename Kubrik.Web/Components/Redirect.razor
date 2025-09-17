@@ -1,0 +1,13 @@
+@code
+{
+    [Inject]
+    public NavigationManager Navigation { get; set; }
+
+    [Parameter]
+    public required string Url { get; init; }
+
+    protected override void OnInitialized()
+    {
+        Navigation.NavigateTo(Url, true);
+    }
+}
