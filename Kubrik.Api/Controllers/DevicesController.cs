@@ -1,10 +1,9 @@
-using Kubrik.Api.Data;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
 using Kubrik.Models;
 using Kubrik.Models.Devices;
 using Kubrik.Api.Services.Managers;
+
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Kubrik.Api.Controllers;
 
@@ -53,7 +52,7 @@ public sealed class DevicesController : AuthorizedControllerBase
         var result = await _deviceManager.CreateAsync(device);
         if (!result.Succeeded)
         {
-            return Problem(result.Message);
+            return Problem(result.Message, statusCode: result.HttpCode);
         }
         
         return Ok(device);
