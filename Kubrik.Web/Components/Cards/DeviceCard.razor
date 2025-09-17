@@ -1,0 +1,25 @@
+@using Kubrik.Models.Devices
+
+<div class="d-flex align-items-center p-3 bg-white rounded-4 border border-light-subtle mx-auto" style="width: 95%;">
+    <div class="d-flex justify-content-center align-items-center me-3 bg-white rounded-circle border border-2 border-light-subtle" style="width: 56px; height: 56px;">
+        <img src="/images/@Image" class="rounded-circle" style="width: 36px; height: 36px;" alt="@Device.Name"/>
+    </div>
+    
+    <div class="flex-grow-1">
+        <h6 class="mb-1 fw-semibold" style="font-size: 0.95rem;">@Device.Name</h6>
+        <p class="mb-1 text-muted" style="font-size: 0.8rem;">Paris • 8 hours ago</p>
+    </div>
+</div>
+
+@code 
+{
+    [Parameter]
+    public required Device Device { get; set; }
+
+    private string Image => Device.Type switch
+    {
+        DeviceType.Computer => "computer.png",
+        DeviceType.Phone => "smartphone.png",
+        _ => throw new ArgumentOutOfRangeException(nameof(Device.Type))
+    };
+}
