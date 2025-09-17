@@ -23,6 +23,7 @@ public static class DependencyInjectionExtensions
 
     public static IServiceCollection AddManagers(this IServiceCollection services)
     {
+        services.AddScoped<CircleManager>();
         services.AddScoped<DeviceManager>();
 
         return services;
@@ -86,12 +87,7 @@ public static class DependencyInjectionExtensions
                     return Task.CompletedTask;
                 },
                 
-                OnAuthenticationFailed = context =>
-                {
-                    Console.WriteLine($"Authentication failed: {context.Exception.Message}");
-                    
-                    return Task.CompletedTask;
-                },
+                OnAuthenticationFailed = context => Task.CompletedTask,
             };
         });
         
