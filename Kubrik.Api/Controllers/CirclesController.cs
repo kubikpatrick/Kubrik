@@ -1,10 +1,8 @@
-using Kubrik.Api.Data;
+using Kubrik.Api.Services.Managers;
 using Kubrik.Models.Circles;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace Kubrik.Api.Controllers;
 
@@ -13,28 +11,23 @@ namespace Kubrik.Api.Controllers;
 [Route("[controller]")]
 public sealed class CirclesController : AuthorizedControllerBase
 {
-    private readonly ApplicationDbContext _context;
-    
-    private readonly IMemoryCache _cache;
-    
-    public CirclesController(ApplicationDbContext context, IMemoryCache cache)
+    private readonly CircleManager _circleManager;
+
+    public CirclesController(CircleManager circleManager)
     {
-        _context = context;
-        _cache = cache;
+        _circleManager = circleManager;
     }
 
     [HttpGet]
     public async Task<ActionResult<List<Circle>>> Index()
     {
-        var circles = await _context.Circles.Where(c => c.UserId == CurrentUserId).ToListAsync();
-        
-        return Ok(circles);
+        return Ok(Array.Empty<Circle>());
     }
 
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<Circle>> Get([FromRoute] string id)
     {
-        var circle = await _context.Circles.FindAsync(id);
+        var circle = await _circleManager.FindByIdAsync(id);
         if (circle is null || circle.UserId != CurrentUserId)
         {
             return NotFound();
@@ -52,31 +45,56 @@ public sealed class CirclesController : AuthorizedControllerBase
             CreatedAt = DateTime.UtcNow,
             UserId = CurrentUserId
         };
-        
-        await _context.Circles.AddAsync(circle);
-        await _context.SaveChangesAsync();
+
+        var result = await _circleManager.CreateAsync(circle);
+        if (!result.Succeeded)
+        {
+            return Problem(result.Message, statusCode: result.HttpCode);
+        }
         
         return Ok(circle);
     }
     
     [HttpPost("{id:guid}/members")]
-    public async Task<ActionResult> Add([FromRoute] string id, [FromBody] Member member)
+    public async Task<ActionResult> Add([FromRoute] string id, [FromQuery] string userId)
     {
-        var circle = await _context.Circles.Include(c => c.Members).FirstOrDefaultAsync(c => c.Id == id && c.UserId == CurrentUserId);
-        if (circle is null)
+        var circle = await _circleManager.FindByIdAsync(id);
+        if (circle is null || circle.UserId != CurrentUserId)
         {
             return NotFound();
         }
-
-        if (circle.Members.Any(m => m.UserId == member.UserId))
+        
+        var result = await _circleManager.AddMemberAsync(circle, new Member
         {
-            return Conflict();
+            Nickname = string.Empty,
+            CreatedAt = DateTime.UtcNow,
+            CircleId = id,
+            UserId = userId
+        });
+        
+        if (!result.Succeeded)
+        {
+            return Problem(result.Message, statusCode: result.HttpCode);
+        }
+        
+        return Ok();
+    }
+
+    [HttpDelete("{id:guid}/members/{memberId:guid}")]
+    public async Task<ActionResult> Remove([FromRoute] string id, [FromRoute] string memberId)
+    {
+        var circle = await _circleManager.FindByIdAsync(id);
+        if (circle is null || circle.UserId != CurrentUserId)
+        {
+            return NotFound();
+        }
+        
+        var result = await _circleManager.RemoveMemberAsync(circle, memberId);
+        if (!result.Succeeded)
+        {
+            return Problem(result.Message, statusCode: result.HttpCode);
         }
 
-        circle.Members.Add(member);   
-            
-        await _context.SaveChangesAsync();
-        
         return Ok();
     }
 }
