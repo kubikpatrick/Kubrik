@@ -23,6 +23,7 @@ public sealed class Program
         builder.Services.AddBlazoredLocalStorage();
         builder.Services.AddGeolocationServices();
         builder.Services.AddPureHttpClient();
+        builder.Services.AddLucideIcons();
         builder.Services.AddScoped<ITokenService, TokenService>();
         builder.Services.AddScoped<ILocationService, LocationService>();
         builder.Services.AddScoped<IServerUrlService, ServerUrlService>();
