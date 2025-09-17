@@ -1,4 +1,4 @@
-using Kubrik.Models.Results;
+using Kubrik.Api.Miscellaneous.Results;
 
 namespace Kubrik.Api.Services.Managers;
 
